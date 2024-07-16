@@ -1,5 +1,10 @@
 # Baseline Configuration Setup
 
+
+## Details for Baseline
+For more details about Baseline, please visit [Baseline by SecondSonConsulting](https://github.com/SecondSonConsulting/Baseline).
+
+
 ## Overview
 This repository contains scripts and configuration profiles designed to establish a baseline configuration for macOS devices. The goal is to enhance the end-user experience by ensuring devices are properly configured, secure, and equipped with essential applications.
 
