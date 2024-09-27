@@ -1,5 +1,7 @@
 #!/bin/bash
 # Enable software updates
+
+sudo shutdown -r now
 softwareupdate --schedule on
 
 # Rename the mac
