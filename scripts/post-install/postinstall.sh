@@ -1,6 +1,46 @@
 #!/bin/bash
-# Enable software updates
 
+APP_NAME="UEMS Agent" 
+APP_PATH="/Library/ManageEngine/UEMS_Agent/bin/$APP_NAME.app"
+
+
+TIMEOUT=300
+CHECK_INTERVAL=10  
+elapsed_time=0
+
+# Checks if Application is installed or not
+
+is_installed() {
+    if [ -d "$APP_PATH" ]; then
+        return 0  # App is installed
+    else
+        return 1  # App is not installed
+    fi
+}
+
+
+while ! is_installed; do
+    echo "$APP_NAME is not installed. Checking again in $CHECK_INTERVAL seconds..."
+
+    sleep $CHECK_INTERVAL
+    elapsed_time=$((elapsed_time + CHECK_INTERVAL))
+
+    if [ $elapsed_time -ge $TIMEOUT ]; then
+        echo "Timeout of 5 minutes reached. $APP_NAME is not installed."
+        exit 1
+    fi
+done
+
+echo "$APP_NAME is installed."
+exit 0
+
+
+# Updating ManageEngine to install apps
+
+cd /Library/ManageEngine/UEMS_Agent/bin && sudo ./cfgupdate
+
+
+# Enable software updates
 softwareupdate --schedule on
 
 # Rename the mac
