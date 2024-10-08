@@ -32,7 +32,7 @@ while ! is_installed; do
 done
 
 echo "$APP_NAME is installed."
-exit 0
+
 
 
 # Updating ManageEngine to install apps
