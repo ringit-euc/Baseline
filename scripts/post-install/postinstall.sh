@@ -76,7 +76,7 @@ sleep 5
 
 # sudo killall -KILL Dock
 
-sleep 5
+# sleep 5
 
 # Quit
 exit 0
