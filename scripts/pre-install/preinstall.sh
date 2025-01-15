@@ -12,15 +12,24 @@ sudo /usr/sbin/softwareupdate --install-rosetta --agree-to-license
 fi
 
 
-# Rename the mac
-serial_number=$(ioreg -l | awk '/IOPlatformSerialNumber/ {print $4}' | tr -d '"')
-macName="LM${serial_number:3}"
-# echo "Serial Number: $macName"
+# Extract the last 7 characters of the serial number
+DeviceSerialNumber=$(system_profiler SPHardwareDataType | awk '/Serial/ {print substr($4, length($4)-6)}')
 
+# Check if serial number was successfully retrieved
+if [[ -z "$DeviceSerialNumber" ]]; then
+  echo "Error: Unable to retrieve serial number." >&2
+  exit 1
+fi
 
-sudo scutil --set ComputerName "${macName}"
-sudo scutil --set LocalHostName "${macName}"
-sudo scutil --set HostName "${macName}"
+# Define the naming convention
+computerName="LM${DeviceSerialNumber}"
+
+# Rename the Mac (Computer Name, Local Host Name, and Host Name)
+scutil --set ComputerName "$computerName"
+scutil --set LocalHostName "$computerName"
+scutil --set HostName "$computerName"
+
+# Flush the DNS cache
 dscacheutil -flushcache
 
 sleep 5
