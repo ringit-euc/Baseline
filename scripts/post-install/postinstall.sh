@@ -1,5 +1,15 @@
 #!/bin/bash
 
+
+# Install Rosetta 2 for M1 device
+arch=$(/usr/bin/arch)
+ 
+if [ "$arch" == "arm64" ]; then
+sudo /usr/sbin/softwareupdate --install-rosetta --agree-to-license
+fi
+
+
+
 APP_NAME="UEMS Agent" 
 APP_PATH="/Library/ManageEngine/UEMS_Agent/bin/$APP_NAME.app"
 
@@ -43,7 +53,14 @@ cd /Library/ManageEngine/UEMS_Agent/bin && sudo ./cfgupdate
 # Enable software updates
 softwareupdate --schedule on
 
+
+
 # Rename the mac
+serial_number=$(ioreg -l | awk '/IOPlatformSerialNumber/ {print $4}' | tr -d '"')
+macName="LM${serial_number:3}"
+# echo "Serial Number: $macName"
+
+
 sudo scutil --set ComputerName "${macName}"
 sudo scutil --set LocalHostName "${macName}"
 sudo scutil --set HostName "${macName}"
