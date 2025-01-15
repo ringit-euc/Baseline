@@ -68,11 +68,13 @@ dscacheutil -flushcache
 
 sleep 5
 
-sudo /usr/local/bin/dockutil --add '/Applications/RingCentral.app' --no-restart --allhomes
-sudo /usr/local/bin/dockutil --add '/Applications/Google Chrome.app' --no-restart --allhomes
-sudo /usr/local/bin/dockutil --remove 'Mail' --no-restart --allhomes
 
-sudo killall -KILL Dock
+# Dockutil Not being used at this moment, will either delete or uncomment in a later date
+# sudo /usr/local/bin/dockutil --add '/Applications/RingCentral.app' --no-restart --allhomes
+# sudo /usr/local/bin/dockutil --add '/Applications/Google Chrome.app' --no-restart --allhomes
+# sudo /usr/local/bin/dockutil --remove 'Mail' --no-restart --allhomes
+
+# sudo killall -KILL Dock
 
 sleep 5
 
