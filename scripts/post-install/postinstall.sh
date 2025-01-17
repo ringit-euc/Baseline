@@ -53,18 +53,19 @@ cd /Library/ManageEngine/UEMS_Agent/bin && sudo ./cfgupdate
 # Enable software updates
 softwareupdate --schedule on
 
-
+# Wake back up
+kill "$caffeinatepid"
 
 # Rename the mac
-serial_number=$(ioreg -l | awk '/IOPlatformSerialNumber/ {print $4}' | tr -d '"')
-macName="LM${serial_number:3}"
+#serial_number=$(ioreg -l | awk '/IOPlatformSerialNumber/ {print $4}' | tr -d '"')
+#macName="LM${serial_number:3}"
 # echo "Serial Number: $macName"
 
 
-sudo scutil --set ComputerName "${macName}"
-sudo scutil --set LocalHostName "${macName}"
-sudo scutil --set HostName "${macName}"
-dscacheutil -flushcache
+#sudo scutil --set ComputerName "${macName}"
+#sudo scutil --set LocalHostName "${macName}"
+#sudo scutil --set HostName "${macName}"
+#dscacheutil -flushcache
 
 sleep 5
 
