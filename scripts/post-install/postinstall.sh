@@ -14,7 +14,7 @@ APP_NAME="UEMS Agent"
 APP_PATH="/Library/ManageEngine/UEMS_Agent/bin/$APP_NAME.app"
 
 
-TIMEOUT=300
+TIMEOUT=1200
 CHECK_INTERVAL=10  
 elapsed_time=0
 
@@ -36,7 +36,7 @@ while ! is_installed; do
     elapsed_time=$((elapsed_time + CHECK_INTERVAL))
 
     if [ $elapsed_time -ge $TIMEOUT ]; then
-        echo "Timeout of 5 minutes reached. $APP_NAME is not installed."
+        echo "Timeout of 20 minutes reached. $APP_NAME is not installed."
         exit 1
     fi
 done
